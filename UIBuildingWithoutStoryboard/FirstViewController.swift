@@ -8,9 +8,9 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-  
+class FirstViewController: UIViewController {
   var tableView: UITableView!
+  var array = ["a","b"]
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,21 +22,27 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     tableView.delegate = self
     tableView.dataSource = self
     
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+    tableView.register(FirstCell.self, forCellReuseIdentifier: "FirstCell")
     
-    tableView.tableFooterView = UIView(frame: .zero)
+    let firstCell = FirstCell()
+    print(firstCell.sampleText.frame.height)
     
     view.addSubview(tableView)
   }
-  
+}
+
+extension FirstViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
+    return 2
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-    
+    let cell = tableView.dequeueReusableCell(withIdentifier: "FirstCell", for: indexPath) as! FirstCell
+    cell.sampleText.text = array[indexPath.row]
     return cell
   }
+}
+
+extension FirstViewController: UITableViewDelegate {
   
 }
