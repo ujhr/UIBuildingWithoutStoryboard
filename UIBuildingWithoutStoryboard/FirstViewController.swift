@@ -18,15 +18,9 @@ class FirstViewController: UIViewController {
     
     tableView = UITableView()
     tableView.frame = view.frame
-    
     tableView.delegate = self
     tableView.dataSource = self
-    
     tableView.register(FirstCell.self, forCellReuseIdentifier: "FirstCell")
-    
-    let firstCell = FirstCell()
-    print(firstCell.sampleText.frame.height)
-    
     view.addSubview(tableView)
   }
 }
